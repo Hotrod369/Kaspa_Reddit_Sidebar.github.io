@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Kaspa Price Widget</title>
-  </head>
-  <body>
-    <div id="kaspa-widget"></div>
+    <meta charset="utf-8">
+    <title>Reddit Sidebar Widget</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="kaspa-widget.js"></script>
+  </head>
+  <body>
+    <div id="widget" style="display: flex; flex-direction: column; align-items: center; padding: 10px; background-color: #f1f1f1;">
+      <h2 style="margin-bottom: 10px;">Kaspa Price</h2>
+      <div id="kaspa-widget" style="width: 100%; max-width: 600px; height: 400px;"></div>
+      <div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; max-width: 600px; margin-top: 10px;">
+        <p id="price" style="font-size: 18px; font-weight: bold;"></p>
+        <p id="change" style="font-size: 18px;"></p>
+      </div>
+      <div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; max-width: 600px; margin-top: 10px;">
+        <p id="market-cap"></p>
+        <p id="volume"></p>
+      </div>
+    </div>
+    <script src="index.js"></script>
   </body>
 </html>
-
