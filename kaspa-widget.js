@@ -75,3 +75,10 @@ const fetchData = async () => {
 
     // Append volume element to widget
     widget.appendChild(volumeElement);
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+fetchData();
