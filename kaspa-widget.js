@@ -2,25 +2,25 @@ const kaspaWidget = document.getElementById("kaspa-widget");
 
 const fetchData = async () => {
   try {
-    // Fetch current price, market cap, volume, and 24h change data
-    const response1 = await axios.get(
+    const response = await axios.get(
       "https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true&precision=5"
     );
-    const data1 = response1.data.kaspa;
+    const data = response.data.kaspa;
 
-    // Fetch hourly market chart data for the last day
-    const response2 = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/kaspa/market_chart?vs_currency=usd&days=1&interval=hourly&date_format=iso"
-    );
-    const data2 = response2.data.prices;
+    const price = data.usd;
+    const marketCap = data.usd_market_cap;
+    const volume = data.usd_24h_vol;
+    const change = data.usd_24h_change;
+    const updatedAt = new Date(data.last_updated_at * 1000).toLocaleString();
 
-    // Extract data points for chart and create options object
-    const chartData = data2.map((item) => [item[0], item[1]]);
     const options = {
       series: [
         {
           name: "Price",
-          data: chartData,
+          data: [
+            [Date.now() - 86400000, data.usd_24h_change],
+            [Date.now(), data.usd],
+          ],
         },
       ],
       chart: {
@@ -61,28 +61,19 @@ const fetchData = async () => {
       },
     };
 
-    // Render chart using ApexCharts library
     const chart = new ApexCharts(kaspaWidget, options);
     chart.render();
 
-    // Extract and format data points for current price, market cap, and volume
-    const price = data1.usd.toFixed(5);
-    const marketCap = data1.usd_market_cap.toFixed(2);
-    const volume = data1.usd_24h_vol.toFixed(2);
-    const change = data1.usd_24h_change.toFixed(2);
-    const updatedAt = new Date(data1.last_updated_at * 1000).toLocaleString();
-
-    // Create elements for each data point and append to widget
     const priceElement = document.createElement("p");
-    priceElement.textContent = `Price: ${price} USD`;
-    widget.appendChild(priceElement);
+    priceElement.textContent = `Price: ${price.toFixed(5)} USD`;
 
     const marketCapElement = document.createElement("p");
-    marketCapElement.textContent = `Market Cap: ${marketCap} USD`;
-    widget.appendChild(marketCapElement);
+    marketCapElement.textContent = `Market Cap: ${marketCap.toFixed(2)} USD`;
 
     const volumeElement = document.createElement("p");
-    volumeElement.textContent = `24h Volume: ${volume} USD`;
+    volumeElement.textContent = `24h Volume: ${volume.toFixed(2)} USD`;
+
+    // Append volume element to widget
     widget.appendChild(volumeElement);
 
   } catch (error) {
