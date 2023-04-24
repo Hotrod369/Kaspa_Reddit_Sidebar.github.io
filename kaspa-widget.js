@@ -133,7 +133,9 @@ const fetchData = async () => {
           },
         },
       },
-    });    
+    });
+    
+    chart.render();
 
   } catch (error) {
     console.error(error);
