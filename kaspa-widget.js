@@ -40,18 +40,14 @@ const fetchData = async () => {
         type: "datetime",
         labels: {
           style: {
-            colors: "#ffffff",
-            color: '#fff',
-            background: '#091744'
+            colors: "#000000", // change color to black
           },
         },
       },
       yaxis: {
         labels: {
           style: {
-            colors: "#ffffff",
-            color: '#fff',
-            background: '#091744'
+            colors: "#000000", // change color to black
           },
         },
       },
@@ -77,60 +73,49 @@ const fetchData = async () => {
     const updatedAt = new Date(data1.last_updated_at * 1000).toLocaleString();
 
     // Create elements for each data point and append to widget
-    const /* `p` is a variable that is not defined in the code provided. It is possible that it was
-    meant to be used as a shorthand for creating a new `p` element, but it is not used
-    correctly in the code. */
-    priceElement = document.createElement("p");
+    const priceElement = document.createElement("p");
     priceElement.textContent = `Price: ${price} USD`;
-    widget.appendChild(priceElement);
-
-    const priceCurrent = document.createElement("div");
-    priceCurrent.className = "price-current";
-    priceCurrent.appendChild(priceElement);
-    kaspaWidget.appendChild(priceCurrent);
+    kaspaWidget.appendChild(priceElement);
 
     const marketCapElement = document.createElement("p");
     marketCapElement.textContent = `Market Cap: ${marketCap} USD`;
-    widget.appendChild(marketCapElement);
-
-    const market =  document.createElement("div");
-    market.className = "market";
-    market.appendChild(marketCapElement);
-    kaspaWidget.appendChild(marketCap);
+    kaspaWidget.appendChild(marketCapElement);
 
     const volumeElement = document.createElement("p");
     volumeElement.textContent = `24h Volume: ${volume} USD`;
-    widget.appendChild(volumeElement);
+    kaspaWidget.appendChild(volumeElement);
 
     // Add 24h high and low
     const response3 = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/kaspa?tickers=false&community_data=false&developer_data=false&sparkline=false"
+    "https://api.coingecko.com/api/v3/coins/kaspa?tickers=false&community_data=false&developer_data=false&sparkline=false"
     );
     const data3 = response3.data.market_data;
     const high24h = data3.high_24h.usd.toFixed(5);
     const low24h = data3.low_24h.usd.toFixed(5);
-
+  
     // Create elements for 24h high and low and append to widget
     const high24hElement = document.createElement("p");
     high24hElement.textContent = `24h High: ${high24h} USD`;
     kaspaWidget.appendChild(high24hElement);
-
+  
     const low24hElement = document.createElement("p");
     low24hElement.textContent = `24h Low: ${low24h} USD`;
     kaspaWidget.appendChild(low24hElement);
-
-    const priceContainer = document.createElement("div");
-    priceContainer.className = "price-container";
-    priceContainer.appendChild(high24hElement);
-    priceContainer.appendChild(low24hElement);
-    kaspaWidget.appendChild(priceContainer);
-
+  
+    } catch (error) {
+    // Handle any errors that occur in the async functions above
+    console.error(error);
+    const errorElement = document.createElement("p");
+    errorElement.textContent = "Error loading Kaspa data. Please try again later.";
+    kaspaWidget.appendChild(errorElement);
+    }
+  
     // Set CSS styles for widget container
     kaspaWidget.style.backgroundColor = "#1b1b1b";
     kaspaWidget.style.color = "#ffffff";
     kaspaWidget.style.padding = "15px";
     kaspaWidget.style.borderRadius = "10px";
-
+  
     // Set CSS styles for chart
     ApexCharts.exec(chart.options.chart.id, "updateOptions", {
       chart: {
@@ -151,12 +136,4 @@ const fetchData = async () => {
         },
       },
     });
-    
-    chart.render();
-
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-fetchData();
+} 
