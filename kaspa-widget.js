@@ -40,14 +40,14 @@ const fetchData = async () => {
         type: "datetime",
         labels: {
           style: {
-            colors: "#ffffff",
+            colors: "#000000",
           },
         },
       },
       yaxis: {
         labels: {
           style: {
-            colors: "#ffffff",
+            colors: "#000000",
           },
         },
       },
