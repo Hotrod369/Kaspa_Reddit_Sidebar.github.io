@@ -101,6 +101,7 @@ const fetchData = async () => {
     const low24hElement = document.createElement("p");
     low24hElement.textContent = `24h Low: ${low24h} USD`;
     kaspaWidget.appendChild(low24hElement);
+    low24hElement.style.margin = '0';
     
     // Set CSS styles for widget container
     kaspaWidget.style.backgroundColor = "#1b1b1b";
