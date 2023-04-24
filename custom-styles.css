@@ -1,10 +1,20 @@
 #kaspa-widget {
+    position: relative;
     width: 100%;
     height: 70%;
     background-color:#0c0f4e !important;
     padding-bottom: 150px !important;
     padding-top: 3px !important;
     padding: 5px;
+}
+
+.price {
+    position: absolute;
+    top: 10px; /* adjust as needed */
+    left: 10px; /* adjust as needed */
+    color: white; /* adjust as needed */
+    font-size: 14px; /* adjust as needed */
+    font-weight: bold;
 }
 
 .apexcharts-line-series path {
