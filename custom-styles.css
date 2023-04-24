@@ -7,6 +7,7 @@
 
 .apexcharts-line-series path {
     stroke: #3addbe !important;
+    background-color:#0c0f4e !important;
 }
 
 .apexcharts-canvas {
