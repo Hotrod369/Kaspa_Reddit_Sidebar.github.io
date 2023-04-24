@@ -5,20 +5,34 @@
     <title>Reddit Sidebar Widget</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+  #chart {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
   </head>
   <body>
-    <div id="widget" style="display: flex; flex-direction: column; align-items: center; padding: 10px; background-color: #f1f1f1;">
-      <h2 style="margin-bottom: 10px;">Kaspa Price</h2>
-      <div id="kaspa-widget" style="width: 100%; max-width: 300px; height: 500px;"></div>
-      <div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; max-width: 300px; margin-top: 10px;">
-        <p id="price" style="font-size: 18px; font-weight: bold;"></p>
-        <p id="change" style="font-size: 18px;"></p>
-      </div>
-      <div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; max-width: 300px; margin-top: 10px;">
-        <p id="market-cap"></p>
-        <p id="volume"></p>
-      </div>
+<div id="widget" style="display: flex; flex-direction: column; align-items: center; padding: 10px; background-color: #f1f1f1;">
+  <h2 style="margin-bottom: 10px;">Kaspa Price</h2>
+  <div id="kaspa-widget" style="width: 100%; max-width: 300px;">
+    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+      <p id="price" style="font-size: 14px; font-weight: bold;"></p>
+      <p id="change" style="font-size: 14px;"></p>
     </div>
+    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+      <p id="market-cap"></p>
+      <p id="volume"></p>
+    </div>
+    <div id="chart"></div>
+    <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 10px;">
+      <p id="high24h" style="font-size: 14px;"></p>
+      <p id="low24h" style="font-size: 14px;"></p>
+    </div>
+  </div>
+</div>
+
     <script src="kaspa-widget.js"></script>
   </body>
 </html>
