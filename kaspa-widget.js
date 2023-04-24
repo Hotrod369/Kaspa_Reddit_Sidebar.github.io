@@ -101,6 +101,33 @@ const fetchData = async () => {
     const low24hElement = document.createElement("p");
     low24hElement.textContent = `24h Low: ${low24h} USD`;
     kaspaWidget.appendChild(low24hElement);
+    
+    // Set CSS styles for widget container
+    kaspaWidget.style.backgroundColor = "#1b1b1b";
+    kaspaWidget.style.color = "#ffffff";
+    kaspaWidget.style.padding = "15px";
+    kaspaWidget.style.borderRadius = "10px";
+
+    // Set CSS styles for chart
+    ApexCharts.exec(chart.options.chart.id, "updateOptions", {
+      chart: {
+        foreColor: "#ffffff",
+      },
+      xaxis: {
+        labels: {
+          style: {
+            colors: "#ffffff",
+          },
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: "#ffffff",
+          },
+        },
+      },
+    });    
 
   } catch (error) {
     console.error(error);
