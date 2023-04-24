@@ -40,14 +40,14 @@ const fetchData = async () => {
         type: "datetime",
         labels: {
           style: {
-            colors: "#000000", // change color to black
+            colors: "#ffffff",
           },
         },
       },
       yaxis: {
         labels: {
           style: {
-            colors: "#000000", // change color to black
+            colors: "#ffffff",
           },
         },
       },
@@ -75,65 +75,19 @@ const fetchData = async () => {
     // Create elements for each data point and append to widget
     const priceElement = document.createElement("p");
     priceElement.textContent = `Price: ${price} USD`;
-    kaspaWidget.appendChild(priceElement);
+    widget.appendChild(priceElement);
 
     const marketCapElement = document.createElement("p");
     marketCapElement.textContent = `Market Cap: ${marketCap} USD`;
-    kaspaWidget.appendChild(marketCapElement);
+    widget.appendChild(marketCapElement);
 
     const volumeElement = document.createElement("p");
     volumeElement.textContent = `24h Volume: ${volume} USD`;
-    kaspaWidget.appendChild(volumeElement);
+    widget.appendChild(volumeElement);
 
-    // Add 24h high and low
-    const response3 = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/kaspa?tickers=false&community_data=false&developer_data=false&sparkline=false"
-    );
-    const data3 = response3.data.market_data;
-    const high24h = data3.high_24h.usd.toFixed(5);
-    const low24h = data3.low_24h.usd.toFixed(5);
-
-    // Create elements for 24h high and low and append to widget
-    const high24hElement = document.createElement("p");
-    high24hElement.textContent = `24h High: ${high24h} USD`;
-    kaspaWidget.appendChild(high24hElement);
-
-    const low24hElement = document.createElement("p");
-    low24hElement.textContent = `24h Low: ${low24h} USD`;
-    kaspaWidget.appendChild(low24hElement);
-
-    } catch (error) {
-      // Handle any errors that occur in the async functions above
-      console.error(error);
-      const errorElement = document.createElement("p");
-      errorElement.textContent = "Error loading Kaspa data. Please try again later.";
-      kaspaWidget.appendChild(errorElement);
-    }
-
-    // Set CSS styles for widget container
-    kaspaWidget.style.backgroundColor = "#1b1b1b";
-    kaspaWidget.style.color = "#ffffff";
-    kaspaWidget.style.padding = "15px";
-    kaspaWidget.style.borderRadius = "10px";
-
-    // Set CSS styles for chart
-    ApexCharts.exec(chart.options.chart.id, "updateOptions", {
-      chart: {
-        foreColor: "#ffffff",
-      },
-      xaxis: {
-        labels: {
-          style: {
-            colors: "#ffffff",
-          },
-        },
-      },
-      yaxis: {
-        labels: {
-          style: {
-            colors: "#ffffff",
-          },
-        },
-      },
-    });
+  } catch (error) {
+    console.error(error);
   }
+};
+
+fetchData();
