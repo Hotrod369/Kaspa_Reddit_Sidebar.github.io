@@ -3,6 +3,7 @@
     height: 70%;
     background-color:#0c0f4e !important;
     padding-bottom: 150px !important;
+    padding-top: 3px;
 }
 
 .apexcharts-line-series path {
