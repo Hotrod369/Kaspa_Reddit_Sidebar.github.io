@@ -84,6 +84,23 @@ const fetchData = async () => {
     const volumeElement = document.createElement("p");
     volumeElement.textContent = `24h Volume: ${volume} USD`;
     widget.appendChild(volumeElement);
+    
+        // Add 24h high and low
+    const response3 = await axios.get(
+      "https://api.coingecko.com/api/v3/coins/kaspa?tickers=false&community_data=false&developer_data=false&sparkline=false"
+    );
+    const data3 = response3.data.market_data;
+    const high24h = data3.high_24h.usd.toFixed(5);
+    const low24h = data3.low_24h.usd.toFixed(5);
+
+    // Create elements for 24h high and low and append to widget
+    const high24hElement = document.createElement("p");
+    high24hElement.textContent = `24h High: ${high24h} USD`;
+    kaspaWidget.appendChild(high24hElement);
+
+    const low24hElement = document.createElement("p");
+    low24hElement.textContent = `24h Low: ${low24h} USD`;
+    kaspaWidget.appendChild(low24hElement);
 
   } catch (error) {
     console.error(error);
