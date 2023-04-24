@@ -90,6 +90,11 @@ const fetchData = async () => {
     const marketCapElement = document.createElement("p");
     marketCapElement.textContent = `Market Cap: ${marketCap} USD`;
     widget.appendChild(marketCapElement);
+    
+    const market =  document.createElement("div");
+    market.className = "market";
+    market.appendChild(marketCapElement);
+    kaspaWidget.appendChild(marketCap);
 
     const volumeElement = document.createElement("p");
     volumeElement.textContent = `24h Volume: ${volume} USD`;
