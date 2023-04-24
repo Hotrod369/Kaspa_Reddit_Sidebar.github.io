@@ -8,7 +8,7 @@
     padding: 5px;
 }
 
-price-current {
+.price-current {
     position: absolute;
     top: 10px; !important 
     left: 10px; !important 
@@ -17,13 +17,14 @@ price-current {
     font-weight: bold; !important 
 }
 
-market {
+.market {
     position: absolute;
-    top: 10px; !important 
+    top: 20px; !important 
     left: 10px; !important 
     color: white; !important 
     font-size: 14px; !important  
-    font-weight: bold; !important 
+    font-weight: bold; !important
+}    
 
 .price-container {
   position: absolute; !important
