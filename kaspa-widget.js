@@ -80,6 +80,12 @@ const fetchData = async () => {
     const priceElement = document.createElement("p");
     priceElement.textContent = `Price: ${price} USD`;
     widget.appendChild(priceElement);
+    
+    // Create price-current Class For CSS
+    const priceCurrent = document.createElement("div");
+    priceCurrent.className = "price-current";
+    priceCurrent.appendChild(priceElement);
+    kaspaWidget.appendChild(priceCurrent);    
 
     const marketCapElement = document.createElement("p");
     marketCapElement.textContent = `Market Cap: ${marketCap} USD`;
