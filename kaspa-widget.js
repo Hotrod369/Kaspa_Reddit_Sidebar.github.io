@@ -126,7 +126,7 @@ const fetchData = async () => {
     kaspaWidget.appendChild(priceContainer);
     
     // Set CSS styles for widget container
-    kaspaWidget.style.backgroundColor = "#1b1b1b";
+    kaspaWidget.style.backgroundColor = "#020381";
     kaspaWidget.style.color = "#ffffff";
     kaspaWidget.style.padding = "15px";
     kaspaWidget.style.borderRadius = "10px";
