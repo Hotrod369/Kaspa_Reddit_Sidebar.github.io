@@ -8,11 +8,11 @@
     padding: 5px;
 }
 
-price-current {
+div.price-current {
     position: absolute;
     top: 10px; !important 
     left: 10px; !important 
-    color: white; !important 
+    color: #ffffff; !important 
     font-size: 14px; !important  
     font-weight: bold; !important 
 }
