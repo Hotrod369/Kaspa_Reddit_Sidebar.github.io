@@ -2,21 +2,13 @@
     width: 100%;
     height: 70%;
     background-color:#0c0f4e !important;
-    margin-top: 5px !important;
+    padding-bottom: 150px !important;
 }
-
-.apexchartsujx7z53w {
-   background-color:#0c0f4e !important;
-}    
 
 .apexcharts-line-series path {
     stroke: #3addbe !important;
 }
     
-.body {    
-    background-color:#0c0f4e !important;
-}
-
 .apexcharts-canvas {
     margin-top: -5px;
 }
