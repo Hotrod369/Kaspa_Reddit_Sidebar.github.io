@@ -97,6 +97,7 @@ const fetchData = async () => {
     const high24hElement = document.createElement("p");
     high24hElement.textContent = `24h High: ${high24h} USD`;
     kaspaWidget.appendChild(high24hElement);
+    high24hElement.style.margin = '0';
 
     const low24hElement = document.createElement("p");
     low24hElement.textContent = `24h Low: ${low24h} USD`;
