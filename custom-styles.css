@@ -10,11 +10,19 @@
 
 .price {
     position: absolute;
-    top: 10px; /* adjust as needed */
-    left: 10px; /* adjust as needed */
-    color: white; /* adjust as needed */
-    font-size: 14px; /* adjust as needed */
-    font-weight: bold;
+    top: 10px; !important 
+    left: 10px; !important 
+    color: white; !important 
+    font-size: 14px; !important  
+    font-weight: bold; !important 
+}
+
+.high24h {
+    padding-bottom: 15px; !important 
+}
+
+.low24h {
+    padding-bottom: 2px; !important 
 }
 
 .apexcharts-line-series path {
