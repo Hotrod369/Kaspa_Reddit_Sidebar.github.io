@@ -108,6 +108,12 @@ const fetchData = async () => {
     kaspaWidget.appendChild(low24hElement);
     low24hElement.style.margin = '0';
     
+    const priceContainer = document.createElement("div");
+    priceContainer.className = "price-container";
+    priceContainer.appendChild(high24hElement);
+    priceContainer.appendChild(low24hElement);
+    kaspaWidget.appendChild(priceContainer);
+    
     // Set CSS styles for widget container
     kaspaWidget.style.backgroundColor = "#1b1b1b";
     kaspaWidget.style.color = "#ffffff";
