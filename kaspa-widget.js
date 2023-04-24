@@ -41,6 +41,8 @@ const fetchData = async () => {
         labels: {
           style: {
             colors: "#ffffff",
+            color: '#fff',
+            background: '#00E396'
           },
         },
       },
@@ -48,6 +50,8 @@ const fetchData = async () => {
         labels: {
           style: {
             colors: "#ffffff",
+            color: '#fff',
+            background: '#00E396'
           },
         },
       },
