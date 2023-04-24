@@ -8,7 +8,7 @@
     padding: 5px;
 }
 
-div.price-current {
+div .price-current {
     position: absolute;
     top: 10px; !important 
     left: 10px; !important 
