@@ -32,7 +32,7 @@ market {
   left: 50%; !important
   transform: translate(-50%, -50%); !important
 }
-
+*/
 .apexcharts-line-series path {
     stroke: #3addbe !important;
 }
@@ -40,4 +40,4 @@ market {
 .apexcharts-canvas {
     margin-top: 5px; !important
 }
-*/    
+    
