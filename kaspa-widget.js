@@ -40,14 +40,18 @@ const fetchData = async () => {
         type: "datetime",
         labels: {
           style: {
-            colors: "#000000", // change color to black
+            colors: "#ffffff",
+            color: '#fff',
+            background: '#091744'
           },
         },
       },
       yaxis: {
         labels: {
           style: {
-            colors: "#000000", // change color to black
+            colors: "#ffffff",
+            color: '#fff',
+            background: '#091744'
           },
         },
       },
@@ -73,17 +77,30 @@ const fetchData = async () => {
     const updatedAt = new Date(data1.last_updated_at * 1000).toLocaleString();
 
     // Create elements for each data point and append to widget
-    const priceElement = document.createElement("p");
+    const /* `p` is a variable that is not defined in the code provided. It is possible that it was
+    meant to be used as a shorthand for creating a new `p` element, but it is not used
+    correctly in the code. */
+    priceElement = document.createElement("p");
     priceElement.textContent = `Price: ${price} USD`;
-    kaspaWidget.appendChild(priceElement);
+    widget.appendChild(priceElement);
+
+    const priceCurrent = document.createElement("div");
+    priceCurrent.className = "price-current";
+    priceCurrent.appendChild(priceElement);
+    kaspaWidget.appendChild(priceCurrent);
 
     const marketCapElement = document.createElement("p");
     marketCapElement.textContent = `Market Cap: ${marketCap} USD`;
-    kaspaWidget.appendChild(marketCapElement);
+    widget.appendChild(marketCapElement);
+
+    const market =  document.createElement("div");
+    market.className = "market";
+    market.appendChild(marketCapElement);
+    kaspaWidget.appendChild(marketCap);
 
     const volumeElement = document.createElement("p");
     volumeElement.textContent = `24h Volume: ${volume} USD`;
-    kaspaWidget.appendChild(volumeElement);
+    widget.appendChild(volumeElement);
 
     // Add 24h high and low
     const response3 = await axios.get(
@@ -102,13 +119,11 @@ const fetchData = async () => {
     low24hElement.textContent = `24h Low: ${low24h} USD`;
     kaspaWidget.appendChild(low24hElement);
 
-    } catch (error) {
-      // Handle any errors that occur in the async functions above
-      console.error(error);
-      const errorElement = document.createElement("p");
-      errorElement.textContent = "Error loading Kaspa data. Please try again later.";
-      kaspaWidget.appendChild(errorElement);
-    }
+    const priceContainer = document.createElement("div");
+    priceContainer.className = "price-container";
+    priceContainer.appendChild(high24hElement);
+    priceContainer.appendChild(low24hElement);
+    kaspaWidget.appendChild(priceContainer);
 
     // Set CSS styles for widget container
     kaspaWidget.style.backgroundColor = "#1b1b1b";
@@ -136,4 +151,12 @@ const fetchData = async () => {
         },
       },
     });
+    
+    chart.render();
+
+  } catch (error) {
+    console.error(error);
   }
+};
+
+fetchData();
