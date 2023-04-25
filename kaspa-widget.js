@@ -76,14 +76,29 @@ const fetchData = async () => {
     const priceElement = document.createElement("p");
     priceElement.textContent = `Price: ${price} USD`;
     kaspaWidget.appendChild(priceElement);
+    
+    const priceCurrent = document.createElement("div");
+    priceCurrent.className = "price-current";
+    priceCurrent.appendChild(priceElement);
+    kaspaWidget.appendChild(priceCurrent);
 
     const marketCapElement = document.createElement("p");
     marketCapElement.textContent = `Market Cap: ${marketCap} USD`;
     kaspaWidget.appendChild(marketCapElement);
+    
+    const market =  document.createElement("div");
+    market.className = "market";
+    market.appendChild(marketCapElement);
+    kaspaWidget.appendChild(market);
 
     const volumeElement = document.createElement("p");
     volumeElement.textContent = `24h Volume: ${volume} USD`;
-    kaspaWidget.appendChild(volumeElement); 
+    kaspaWidget.appendChild(volumeElement);
+    
+    const volume24hr = document.createElement("div");
+    volume24hr.className = "volume-24hr";
+    market.appendChild(volumeElement)
+    kaspaWidget.appendChild(volumeElement);
 
         // Add 24h high and low
     const response3 = await axios.get(
