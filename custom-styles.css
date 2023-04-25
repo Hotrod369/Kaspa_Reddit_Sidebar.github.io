@@ -11,7 +11,7 @@ h2 {
     margin-top: 40px;
 }
 
-#chart-tooltip {
+div.apexcharts-tooltip apexcharts-theme-light {
     color: #000000;
 }
 
