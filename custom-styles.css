@@ -23,7 +23,7 @@ div.apexcharts-tooltip.apexcharts-theme-light {
     color: #000000;
 }
 
-div.apexcharts-menu-item exportCSV {
+div.apexcharts-menu apexcharts-menu-open {
     color: #000000;
 }    
 
