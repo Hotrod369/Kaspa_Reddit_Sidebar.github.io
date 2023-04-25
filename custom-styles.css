@@ -1,5 +1,6 @@
-div#kaspa-widget {
-    background-color: #01134d;
+.div#kaspa-widget {
+    height: 500px !important;
+    background-color: #01134d !important;
 }   
 /*    position: relative;
     width: 100%;
