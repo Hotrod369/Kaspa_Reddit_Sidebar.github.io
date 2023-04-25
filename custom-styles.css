@@ -15,11 +15,11 @@ div.apexcharts-tooltip-text {
     color: #000000;
 }
 
-div#apexcharts-menu {
+div.apexcharts-menu {
     background-color: #ff;
 }
 
-div#apexcharts-tooltip.apexcharts-theme-light {
+div.apexcharts-tooltip.apexcharts-theme-light {
     color: #000000;
 }
 
