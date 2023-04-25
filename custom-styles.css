@@ -11,11 +11,11 @@ h2 {
     margin-top: 40px;
 }
 
-div.apexcharts-tooltip apexcharts-theme-light {
+div.apexcharts-tooltip-text {
     color: #000000;
 }
 
-.apexcharts-menu {
+.apexcharts-menu apexcharts-menu-open {
     background-color: #ff;
 }
 
