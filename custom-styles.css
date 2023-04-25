@@ -12,12 +12,20 @@ h2 {
 }
 
 #chart-tooltip {
-  color: black;
+    color: #000000;
 }
 
-.dropdown-menu a {
-  color: black;
+div.apexcharts-menu-item exportSVG {
+    color: #000000;
 }
+
+div.apexcharts-menu-item exportPNG {
+    color: #000000;
+}
+
+div.apexcharts-menu-item exportCSV {
+    color: #000000;
+}    
 
 /*    position: relative;
     width: 100%;
