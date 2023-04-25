@@ -54,6 +54,7 @@ const fetchData = async () => {
       tooltip: {
         x: {
           format: "dd MMM yyyy",
+            colors: "#000000",
         },
       },
       fill: {
