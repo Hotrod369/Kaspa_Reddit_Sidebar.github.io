@@ -1,9 +1,14 @@
 div#kaspa-widget {
     height: 435px !important;
     background-color: #01134d !important;
-}   
+} 
+
 p {
     margin: 0px;
+}
+
+h2 {
+    margin-top: 40px;
 }    
 /*    position: relative;
     width: 100%;
