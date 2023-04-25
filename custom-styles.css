@@ -19,7 +19,7 @@ div#apexcharts-menu {
     background-color: #ff;
 }
 
-div.apexcharts-menu-item exportPNG {
+div#apexcharts-tooltip.apexcharts-theme-light {
     color: #000000;
 }
 
