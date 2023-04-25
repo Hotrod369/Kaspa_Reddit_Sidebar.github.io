@@ -15,7 +15,7 @@ div.apexcharts-tooltip-text {
     color: #000000;
 }
 
-.apexcharts-menu apexcharts-menu-open {
+div#apexcharts-menu {
     background-color: #ff;
 }
 
