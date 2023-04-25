@@ -40,7 +40,7 @@ const fetchData = async () => {
         type: "datetime",
         labels: {
           style: {
-            colors: "ffffff", // change color to black
+            colors: "#ffffff", // change color to black
           },
         },
       },
@@ -86,7 +86,7 @@ const fetchData = async () => {
     marketCapElement.textContent = `Market Cap: ${marketCap} USD`;
     kaspaWidget.appendChild(marketCapElement);
     
-    const market =  document.createElement("div");
+        const market = document.createElement("div");
     market.className = "market";
     market.appendChild(marketCapElement);
     kaspaWidget.appendChild(market);
@@ -94,13 +94,13 @@ const fetchData = async () => {
     const volumeElement = document.createElement("p");
     volumeElement.textContent = `24h Volume: ${volume} USD`;
     kaspaWidget.appendChild(volumeElement);
-    
+
     const volume24hr = document.createElement("div");
     volume24hr.className = "volume-24hr";
-    market.appendChild(volumeElement)
-    kaspaWidget.appendChild(volumeElement);
+    volume24hr.appendChild(volumeElement);
+    kaspaWidget.appendChild(volume24hr);
 
-        // Add 24h high and low
+    // Add 24h high and low
     const response3 = await axios.get(
       "https://api.coingecko.com/api/v3/coins/kaspa?tickers=false&community_data=false&developer_data=false&sparkline=false"
     );
@@ -116,7 +116,6 @@ const fetchData = async () => {
     const low24hElement = document.createElement("p");
     low24hElement.textContent = `24h Low: ${low24h} USD`;
     kaspaWidget.appendChild(low24hElement);
-
 
     // Set CSS styles for widget container
     kaspaWidget.style.backgroundColor = "#1b1b1b";
@@ -144,9 +143,9 @@ const fetchData = async () => {
         },
       },
     });
-    } catch (error) {
+  } catch (error) {
     console.error(error);
-  }    
-}
+  }
+};
 
 fetchData();
