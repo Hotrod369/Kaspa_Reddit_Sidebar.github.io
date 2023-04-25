@@ -1,5 +1,7 @@
-/*#kaspa-widget {
-    position: relative;
+div#kaspa-widget {
+    background-color: #01134d;
+}   
+/*    position: relative;
     width: 100%;
     height: 500px !important;
     background-color:#0c0f4e !important;
@@ -8,7 +10,7 @@
     padding: 5px;
 }
 
-.price-current {
+div.price-current {
     position: absolute;
     top: 10px; !important 
     left: 10px; !important 
@@ -33,6 +35,9 @@ market {
   transform: translate(-50%, -50%); !important
 }
 */
+.volume-24hr {
+    color: #ffffff
+}        
 .apexcharts-line-series path {
     stroke: #3addbe !important;
 }
