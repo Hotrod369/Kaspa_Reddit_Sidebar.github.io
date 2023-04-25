@@ -15,8 +15,8 @@ div.apexcharts-tooltip apexcharts-theme-light {
     color: #000000;
 }
 
-div.apexcharts-menu-item exportSVG {
-    color: #000000;
+.apexcharts-menu {
+    background-color: #ff;
 }
 
 div.apexcharts-menu-item exportPNG {
