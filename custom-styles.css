@@ -2,6 +2,9 @@ div#kaspa-widget {
     height: 500px !important;
     background-color: #01134d !important;
 }   
+p {
+    margin: 0px;
+}    
 /*    position: relative;
     width: 100%;
     height: 500px !important;
