@@ -23,9 +23,10 @@ div.apexcharts-tooltip.apexcharts-theme-light {
     color: #000000;
 }
 
-div#apexcharts-menu apexcharts-menu-open {
+.apexcharts-menu-open {
     color: #000000;
-}    
+}
+    
 
 /*    position: relative;
     width: 100%;
