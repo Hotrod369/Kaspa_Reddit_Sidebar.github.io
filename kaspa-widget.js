@@ -58,8 +58,11 @@ const fetchData = async () => {
       tooltip: {
         x: {
           format: "dd MMM yyyy HH:mm:ss",
-          formatter: function (val, timestamp) {
-            const date = new Date(Number(timestamp));
+          formatter: function(val, timestamp) {
+            if (isNaN(timestamp)) {
+              return '';
+            }  
+            const date = new Date(timestamp);
             const formattedDate = date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false });
             return `${formattedDate} UTC`;
           },
