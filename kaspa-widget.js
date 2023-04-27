@@ -58,13 +58,17 @@ const fetchData = async () => {
       tooltip: {
         x: {
           format: "dd MMM yyyy HH:mm:ss",
+          style: {
             colors: "#000000",
+          }  
         },
         y: {
           formatter: function(val) {
             return `$${val.toFixed(5)}`;
           },
-          colors: "#000000",
+          style: {
+            colors: "#000000",
+          }  
         }
       },
       fill: {
