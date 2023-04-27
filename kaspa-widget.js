@@ -67,7 +67,7 @@ const fetchData = async () => {
     chart.render();
 
     // Extract and format data points for current price, market cap, and volume
-    const price = data1.usd.toFixed(5);
+    const price = data1.usd.toFixed(5); // Change to 5
     const marketCap = data1.usd_market_cap.toFixed(2);
     const volume = data1.usd_24h_vol.toFixed(2);
     const change = data1.usd_24h_change.toFixed(2);
