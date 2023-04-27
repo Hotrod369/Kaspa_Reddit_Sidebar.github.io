@@ -45,9 +45,13 @@ const fetchData = async () => {
         },
       },
       yaxis: {
+        forceNiceScale: true,
         labels: {
+          formatter: function(val) {
+            return `$${val.toFixed(5)}`;
+          },
           style: {
-            colors: "#ffffff", // change color to black
+            colors: "#ffffff",
           },
         },
       },
