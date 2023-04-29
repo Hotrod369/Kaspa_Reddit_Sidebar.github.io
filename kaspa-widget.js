@@ -25,7 +25,7 @@ const fetchData = async () => {
       ],
       chart: {
         type: "line",
-        height: 350,
+        height: 400,
         zoom: {
           enabled: false,
         },
