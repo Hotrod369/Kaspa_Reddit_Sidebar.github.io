@@ -26,42 +26,6 @@ div.apexcharts-tooltip.apexcharts-theme-light {
 .apexcharts-menu-open {
     color: #000000;
 }
-    
-
-/*    position: relative;
-    width: 100%;
-    height: 500px !important;
-    background-color:#0c0f4e !important;
-    padding-bottom: 150px !important;
-    padding-top: 3px !important;
-    padding: 5px;
-}
-
-div.price-current {
-    position: absolute;
-    top: 10px; !important 
-    left: 10px; !important 
-    color: #ffffff; !important 
-    font-size: 14px; !important  
-    font-weight: bold; !important 
-}
-
-market {
-    position: absolute;
-    top: 20px; !important 
-    left: 10px; !important 
-    color: white; !important 
-    font-size: 14px; !important  
-    font-weight: bold; !important
-}    
-
-.price-container {
-  position: absolute; !important
-  top: 50%; !important
-  left: 50%; !important
-  transform: translate(-50%, -50%); !important
-}
-*/
 .volume-24hr {
     color: #ffffff
 }        
