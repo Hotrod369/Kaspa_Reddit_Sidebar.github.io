@@ -102,7 +102,7 @@ const fetchData = async () => {
     marketCapElement.textContent = `Market Cap: ${marketCap} USD`;
     kaspaWidget.appendChild(marketCapElement);
     
-        const market = document.createElement("div");
+    const market = document.createElement("div");
     market.className = "market";
     market.appendChild(marketCapElement);
     kaspaWidget.appendChild(market);
@@ -132,12 +132,24 @@ const fetchData = async () => {
     const low24hElement = document.createElement("p");
     low24hElement.textContent = `24h Low: ${low24h} USD`;
     kaspaWidget.appendChild(low24hElement);
+    
+    //Create element for current network hashrate and append it to widget
+    const hashrateElement = document.createElement("div");
+    hashrateElement.className = "hashrate";
+    hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
+    kaspaWidget.appendChild(hashrateElement);
+    let hashrateFormatted;
+    if (hashrate > 1000000000) {
+    hashrateFormatted = (hashrate / 1000000000).toFixed(2) + "PH/s";
+    } else {
+    hashrateFormatted = (hashrate / 1000000).toFixed(2) + "MH/s";
+    }
 
     // Set CSS styles for widget container
     kaspaWidget.style.backgroundColor = "#1b1b1b";
     kaspaWidget.style.color = "#ffffff";
     kaspaWidget.style.padding = "15px";
-    kaspaWidget.style.borderRadius = "10px";
+    kaspaWidget.style.borderRadius = "10px";    
 
     // Set CSS styles for chart
     ApexCharts.exec(chart.options.chart.id, "updateOptions", {
