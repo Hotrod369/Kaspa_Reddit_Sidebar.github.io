@@ -134,7 +134,7 @@ const fetchData = async () => {
     kaspaWidget.appendChild(low24hElement);
     
     //Create element for current network hashrate and append it to widget
-    const hashrateElement = document.createElement("div");
+    const hashrateElement = document.createElement("p");
     hashrateElement.className = "hashrate";
     hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
     kaspaWidget.appendChild(hashrateElement);
