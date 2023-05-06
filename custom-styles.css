@@ -1,6 +1,8 @@
 div#kaspa-widget {
     height: 500px !important;
     background-color: #01134d !important;
+    border-radius: 15px;
+    border: 2px #3addbe; 
 } 
 
 p {
