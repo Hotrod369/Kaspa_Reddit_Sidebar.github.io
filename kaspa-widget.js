@@ -164,4 +164,58 @@ const fetchData = async () => {
   }
 };
 
+const getKaspaData = async () => {
+  try {
+    const response = await axios.get(
+      "https://api.coingecko.com/api/v3/coins/kaspa?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false"
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const formatPrice = (price) => {
+  return price.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+};
+
+const updateWidget = (data) => {
+  const { market_data } = data;
+  const price = market_data.current_price.usd;
+  const priceFormatted = formatPrice(price);
+  const priceElement = document.querySelector(".price-current p");
+  priceElement.textContent = `Price: $${priceFormatted}`;
+
+  const marketCap = (market_data.market_cap.usd / 1e6).toFixed(2) + "M$";
+  const marketCapElement = document.querySelector(".market p");
+  marketCapElement.textContent = `Market Cap: ${marketCap}`;
+
+  const volume = (market_data.total_volume.usd / 1e6).toFixed(2) + "M$";
+  const volumeElement = document.querySelector(".volume-24hr p");
+  volumeElement.textContent = `24h Volume: ${volume}`;
+
+  const change24h = market_data.price_change_percentage_24h.toFixed(2);
+  const change24hElement = document.querySelector(".price-change");
+  change24hElement.textContent = `${change24h}%`;
+
+  const high24h = market_data.high_24h.usd.toFixed(2);
+  const high24hElement = document.querySelector(".high-24hr p");
+  high24hElement.textContent = `24h High: $${high24h}`;
+
+  const low24h = market_data.low_24h.usd.toFixed(2);
+  const low24hElement = document.querySelector(".low-24hr p");
+  low24hElement.textContent = `24h Low: $${low24h}`;
+};
+
+const initWidget = async () => {
+  const data = await getKaspaData();
+  updateWidget(data);
+};
+
+initWidget();
+
+
 fetchData();
