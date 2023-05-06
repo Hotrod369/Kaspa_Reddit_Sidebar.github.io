@@ -1,5 +1,5 @@
 div#kaspa-widget {
-    height: 485px !important;
+    height: 500px !important;
     background-color: #01134d !important;
 } 
 
@@ -13,10 +13,6 @@ h2 {
 
 div.apexcharts-tooltip-text {
     color: #000000;
-}
-
-div.apexcharts-menu {
-    background-color: #ff;
 }
 
 div.apexcharts-tooltip.apexcharts-theme-light {
