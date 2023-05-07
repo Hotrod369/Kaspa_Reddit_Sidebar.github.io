@@ -145,6 +145,11 @@ const fetchData = async () => {
     hashrateFormatted = (hashrate / 1000000).toFixed(2) + "MH/s";
     }
 
+    const hashrate = document.createElement("div");
+    hashrate.classname = "hashrate";
+    hashrate.appendChild(hashrateElement);
+    kaspaWidget.appendChild(hashrate);
+    
     // Set CSS styles for widget container
     kaspaWidget.style.backgroundColor = "#1b1b1b";
     kaspaWidget.style.color = "#ffffff";
