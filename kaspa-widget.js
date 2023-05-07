@@ -155,23 +155,6 @@ fetch(apiUrl)
     low24hElement.textContent = `24h Low: ${low24h} USD`;
     kaspaWidget.appendChild(low24hElement);
     
-    //Create element for current network hashrate and append it to widget
-    let hashrateFormatted;
-    if (hashrate > 1000000000) {
-        hashrateFormatted = (hashrate / 1000000000).toFixed(2) + "PH/s";
-    } else {
-        hashrateFormatted = (hashrate / 1000000).toFixed(2) + "MH/s";
-    }
-
-    const hashrateElement = document.createElement("p");
-    hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
-    kaspaWidget.appendChild(hashrateElement);
-
-    const hashrate = document.createElement("div");
-    hashrate.className = "hashrate";
-    hashrate.appendChild(hashrateElement);
-    kaspaWidget.appendChild(hashrate);
-    
     // Set CSS styles for widget container
     kaspaWidget.style.backgroundColor = "#1b1b1b";
     kaspaWidget.style.color = "#ffffff";
