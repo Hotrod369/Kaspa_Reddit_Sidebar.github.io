@@ -135,8 +135,7 @@ const fetchData = async () => {
     
     //Create element for current network hashrate and append it to widget
     const hashrateElement = document.createElement("p");
-    hashrateElement.className = "hashrate";
-    hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
+    ashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
     kaspaWidget.appendChild(hashrateElement);
     let hashrateFormatted;
     if (hashrate > 1000000000) {
