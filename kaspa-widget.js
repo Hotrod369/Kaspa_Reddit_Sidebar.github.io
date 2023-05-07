@@ -134,15 +134,16 @@ const fetchData = async () => {
     kaspaWidget.appendChild(low24hElement);
     
     //Create element for current network hashrate and append it to widget
-    const hashrateElement = document.createElement("p");
-    ashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
-    kaspaWidget.appendChild(hashrateElement);
     let hashrateFormatted;
     if (hashrate > 1000000000) {
-    hashrateFormatted = (hashrate / 1000000000).toFixed(2) + "PH/s";
+        hashrateFormatted = (hashrate / 1000000000).toFixed(2) + "PH/s";
     } else {
-    hashrateFormatted = (hashrate / 1000000).toFixed(2) + "MH/s";
+        hashrateFormatted = (hashrate / 1000000).toFixed(2) + "MH/s";
     }
+
+    const hashrateElement = document.createElement("p");
+    hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
+    kaspaWidget.appendChild(hashrateElement);
 
     const hashrate = document.createElement("div");
     hashrate.className = "hashrate";
