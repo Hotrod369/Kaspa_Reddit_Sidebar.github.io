@@ -146,7 +146,7 @@ const fetchData = async () => {
     }
 
     const hashrate = document.createElement("div");
-    hashrate.classname = "hashrate";
+    hashrate.className = "hashrate";
     hashrate.appendChild(hashrateElement);
     kaspaWidget.appendChild(hashrate);
     
