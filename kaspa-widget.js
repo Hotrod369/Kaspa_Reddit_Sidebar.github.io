@@ -15,26 +15,28 @@ const fetchData = async () => {
     const data2 = response2.data.prices;
 
     // Construct Hashrate and fetch data
-    const apiUrl = "https://api.kaspa.org/info/hashrate?stringOnly=false";
-fetch(apiUrl)
+    const kaspaEndpoint = "https://api.kaspa.org/info/hashrate?stringOnly=false";
+
+fetch(kaspaEndpoint)
   .then(response => response.json())
   .then(data => {
     const hashrate = data.hashrate;
+
     let hashrateFormatted;
     if (hashrate > 1000000000) {
         hashrateFormatted = (hashrate / 1000000000).toFixed(2) + "PH/s";
     } else {
         hashrateFormatted = (hashrate / 1000000).toFixed(2) + "MH/s";
     }
+
     const hashrateElement = document.createElement("p");
+    hashrateElement.className = "hashrate";
     hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
     kaspaWidget.appendChild(hashrateElement);
-    const hashrateDiv = document.createElement("div");
-    hashrateDiv.className = "hashrate";
-    hashrateDiv.appendChild(hashrateElement);
-    kaspaWidget.appendChild(hashrateDiv);
   })
-  .catch(error => console.error(error));
+  .catch(error => {
+    console.error('Error fetching hashrate:', error);
+  });
 
     // Extract data points for chart and create options object
     const chartData = data2.map((item) => [item[0], item[1]]);
