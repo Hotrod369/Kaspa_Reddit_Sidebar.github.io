@@ -6,10 +6,14 @@ div#kaspa-widget {
     border: 2px #3addbe; 
 } 
 
+#kaspa-widget {
+  position: relative;
+}
+
 #difficulty {
-    position: absolute;
-    bottom: 150px;
-    right: 0;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }
 
 p {
