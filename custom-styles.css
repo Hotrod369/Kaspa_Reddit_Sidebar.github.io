@@ -1,15 +1,15 @@
-div#kaspa-widget {
-    position: relative;
-    height: 515px !important;
-    background-color: #01134d !important;
-    border-radius: 15px;
-    border: 2px #3addbe; 
+#kaspa-widget {
+  position: relative;
+  height: 515px !important;
+  background-color: #01134d !important;
+  border-radius: 15px;
+  border: 2px solid #3addbe; 
 } 
 
-p#difficulty {
+#difficulty {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 150px;
+  right: 0;
 }
 
 p {
