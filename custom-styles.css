@@ -1,5 +1,5 @@
 div#kaspa-widget {
-    height: 500px !important;
+    height: 515px !important;
     background-color: #01134d !important;
     border-radius: 15px;
     border: 2px #3addbe; 
@@ -35,10 +35,4 @@ div.apexcharts-tooltip.apexcharts-theme-light {
     
 .apexcharts-canvas {
     margin-top: 5px; !important;
-}
-
-#difficulty {
-  position: absolute;
-  top: 10px;
-  left: 150px;
 }
