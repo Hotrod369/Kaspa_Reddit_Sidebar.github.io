@@ -10,7 +10,7 @@ div#kaspa-widget {
   position: relative;
 }
 
-#difficulty {
+#kaspa-widget #difficulty {
   position: absolute;
   bottom: 20px;
   right: 20px;
