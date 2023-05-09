@@ -6,7 +6,7 @@
   border: 2px solid #3addbe; 
 } 
 
-#difficulty {
+p .difficulty {
   position: absolute;
   bottom: 150px;
   right: 0;
