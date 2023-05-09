@@ -6,7 +6,7 @@ div#kaspa-widget {
     border: 2px #3addbe; 
 } 
 
-#widget > div:nth-child(3) > p#difficulty {
+p#difficulty {
   position: absolute;
   bottom: 20px;
   right: 20px;
