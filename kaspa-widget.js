@@ -29,10 +29,11 @@ fetch(apiUrl)
     const hashrateElement = document.createElement("p");
     hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
     kaspaWidget.appendChild(hashrateElement);
-    const hashrateDiv = document.createElement("div");
-    hashrateDiv.className = "hashrate";
-    hashrateDiv.appendChild(hashrateElement);
-    kaspaWidget.appendChild(hashrateDiv);
+
+    const hashrate = document.createElement("div");
+    hashrate.className = "hashrate";
+    hashrate.appendChild(hashrateElement);
+    kaspaWidget.appendChild(hashrate);
   })
   .catch(error => console.error(error));
     
