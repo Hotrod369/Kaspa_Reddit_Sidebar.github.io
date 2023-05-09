@@ -14,7 +14,7 @@ const fetchData = async () => {
     );
     const data2 = response2.data.prices;
 
-    // Construct Hashrate and fetch data
+// Construct Hashrate and fetch data
 const apiUrl = "https://api.kaspa.org/info/network";
 fetch(apiUrl)
   .then(response => response.json())
@@ -29,11 +29,10 @@ fetch(apiUrl)
     const hashrateElement = document.createElement("p");
     hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
     kaspaWidget.appendChild(hashrateElement);
-
-    const hashrate = document.createElement("div");
-    hashrate.className = "hashrate";
-    hashrate.appendChild(hashrateElement);
-    kaspaWidget.appendChild(hashrate);
+    const hashrateDiv = document.createElement("div");
+    hashrateDiv.className = "hashrate";
+    hashrateDiv.appendChild(hashrateElement);
+    kaspaWidget.appendChild(hashrateDiv);
   })
   .catch(error => console.error(error));
     
