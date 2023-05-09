@@ -1,9 +1,16 @@
 div#kaspa-widget {
+    position: relative;
     height: 515px !important;
     background-color: #01134d !important;
     border-radius: 15px;
     border: 2px #3addbe; 
 } 
+
+#difficulty {
+    position: absolute;
+    bottom: 150px;
+    right: 0;
+}
 
 p {
     margin: 0px;
