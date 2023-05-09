@@ -15,7 +15,7 @@ const fetchData = async () => {
     const data2 = response2.data.prices;
 
 // Construct Hashrate and fetch data
-const apiUrl = "https://api.kaspa.org/info/network";
+const apiUrl = "https://api.kaspa.org/info/hashrate?stringOnly=false";
 fetch(apiUrl)
   .then(response => response.json())
   .then(data => {
