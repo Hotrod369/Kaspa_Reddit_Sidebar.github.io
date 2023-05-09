@@ -36,6 +36,23 @@ fetch(apiUrl)
   })
   .catch(error => console.error(error));
     
+    // Construct Difficulty and fetch data
+const apiUrlDifficulty = "https://api.kaspa.org/info/network";
+fetch(apiUrlDifficulty)
+  .then(response => response.json())
+  .then(data => {
+    const difficulty = data.difficulty;
+    const difficultyFormatted = difficulty.toFixed(2);
+    const difficultyElement = document.createElement("p");
+    difficultyElement.textContent = `Difficulty: ${difficultyFormatted}`;
+    kaspaWidget.appendChild(difficultyElement);
+    const difficultyDiv = document.createElement("div");
+    difficultyDiv.className = "difficulty";
+    difficultyDiv.appendChild(difficultyElement);
+    kaspaWidget.appendChild(difficultyDiv);
+  })
+  .catch(error => console.error(error));
+
     // Extract data points for chart and create options object
     const chartData = data2.map((item) => [item[0], item[1]]);
     const options = {
