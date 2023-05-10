@@ -2,24 +2,24 @@ import praw
 import os
 import time
 
-REDDIT_USERNAME = os.environ['REDDIT_USERNAME']
-REDDIT_PASSWORD = os.environ['REDDIT_PASSWORD']
-CLIENT_ID = os.environ['CLIENT_ID']
-CLIENT_SECRET = os.environ['CLIENT_SECRET']
-USER_AGENT = ["Kaspa_Updater"]
+# Load the Reddit credentials from environment variables
+reddit_client_id = os.environ.get('REDDIT_CLIENT_ID')
+reddit_client_secret = os.environ.get('REDDIT_CLIENT_SECRET')
+reddit_username = os.environ.get('REDDIT_USERNAME')
+reddit_password = os.environ.get('REDDIT_PASSWORD')
+
+# Initialize the Reddit API client using the credentials
+reddit = praw.Reddit(
+    client_id=reddit_client_id,
+    client_secret=reddit_client_secret,
+    username=reddit_username,
+    password=reddit_password,
+    user_agent='Kaspa_Updater'
+)
 
 def main():
-    # Authenticate with Reddit
-    reddit = praw.Reddit(
-        username=REDDIT_USERNAME,
-        password=REDDIT_PASSWORD,
-        client_id=CLIENT_ID,
-        client_secret=CLIENT_SECRET,
-        user_agent=USER_AGENT
-    )
-
     # Get the subreddit object
-    subreddit = reddit.subreddit('YOUR_SUBREDDIT_NAME')
+    subreddit = reddit.subreddit('Kaspa')
 
     # Get the Kaspa widget HTML code
     with open('kaspa_widget.html', 'r') as f:
