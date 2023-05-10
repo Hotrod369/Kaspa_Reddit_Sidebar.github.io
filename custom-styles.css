@@ -8,8 +8,8 @@
 
 p#difficulty {
   position: absolute;
-  margin-left: 150px;
-  margin-bottom: 150px;
+  margin-left: 150px !important;
+  margin-bottom: 150px !important;
 }
 
 p {
