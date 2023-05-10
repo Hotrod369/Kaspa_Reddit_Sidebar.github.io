@@ -6,49 +6,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link rel="stylesheet" type="text/css" href="custom-styles.css">
-    <style>
-    #kaspa-widget {
-        position: relative;
-        height: 515px !important;
-        background-color: #01134d !important;
-        border-radius: 15px;
-        border: 2px solid #3addbe; 
-      } 
-      
-      p#difficulty {
-        position: absolute;
-        margin-left: 150px;
-        margin-bottom: 150px;
-      }
-      
-      p {
-          margin: 0px;
-          margin-left: 10px;
-          color: #ffffff;
-      }
-      
-      h2 {
-          margin-top: 40px;
-      }
-      
-      div.apexcharts-tooltip-text {
-          color: #000000;
-      }
-      
-      div.apexcharts-tooltip.apexcharts-theme-light {
-          color: #000000;
-      }
-      
-      .apexcharts-menu-open {
-          color: #000000;
-      }
-      .volume-24hr {
-          color: #ffffff
-      }        
-      .apexcharts-line-series path {
-          stroke: #3addbe !important;
-      }
-    </style>
   </head>
   <body>
     <div id="widget" style="display: flex; flex-direction: column; align-items: center; padding: 10px; background-color: #f1f1f1;">
@@ -83,45 +40,6 @@ const fetchData = async () => {
       "https://api.coingecko.com/api/v3/coins/kaspa/market_chart?vs_currency=usd&days=1&interval=hourly&date_format=iso"
     );
     const data2 = response2.data.prices;
-
-// Construct Hashrate and fetch data
-const apiUrl = "https://api.kaspa.org/info/hashrate?stringOnly=false";
-fetch(apiUrl)
-  .then(response => response.json())
-  .then(data => {
-    const hashrate = data.hashrate;
-    let hashrateFormatted;
-    if (hashrate > 1000000000) {
-        hashrateFormatted = (hashrate / 1000000000).toFixed(2) + "PH/s";
-    } else {
-        hashrateFormatted = hashrate.toFixed(2) + "TH/s";
-    }
-    const hashrateElement = document.createElement("p");
-    hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
-    kaspaWidget.appendChild(hashrateElement);
-    const hashrateDiv = document.createElement("div");
-    hashrateDiv.className = "hashrate";
-    hashrateDiv.appendChild(hashrateElement);
-    kaspaWidget.appendChild(hashrateDiv);
-  })
-  .catch(error => console.error(error));
-    
-    // Construct Difficulty and fetch data
-const apiUrlDifficulty = "https://api.kaspa.org/info/network";
-fetch(apiUrlDifficulty)
-  .then(response => response.json())
-  .then(data => {
-    const difficulty = data.difficulty;
-    const difficultyFormatted = difficulty.toFixed(2);
-    const difficultyElement = document.createElement("p");
-    difficultyElement.textContent = `Difficulty: ${difficultyFormatted}`;
-    kaspaWidget.appendChild(difficultyElement);
-    const difficultyDiv = document.createElement("div");
-    difficultyDiv.className = "difficulty";
-    difficultyDiv.appendChild(difficultyElement);
-    kaspaWidget.appendChild(difficultyDiv);
-  })
-  .catch(error => console.error(error));
 
     // Extract data points for chart and create options object
     const chartData = data2.map((item) => [item[0], item[1]]);
@@ -242,90 +160,10 @@ fetch(apiUrlDifficulty)
     low24hElement.textContent = `24h Low: ${low24h} USD`;
     kaspaWidget.appendChild(low24hElement);
     
-    // Set CSS styles for widget container
-    kaspaWidget.style.backgroundColor = "#1b1b1b";
-    kaspaWidget.style.color = "#ffffff";
-    kaspaWidget.style.padding = "15px";
-    kaspaWidget.style.borderRadius = "10px";    
-
-    // Set CSS styles for chart
-    ApexCharts.exec(chart.options.chart.id, "updateOptions", {
-      chart: {
-        foreColor: "#ffffff",
-      },
-      xaxis: {
-        labels: {
-          style: {
-            colors: "#ffffff",
-          },
-        },
-      },
-      yaxis: {
-        labels: {
-          style: {
-            colors: "#ffffff",
-          },
-        },
-      },
-    });
   } catch (error) {
     console.error(error);
   }
 };
-
-const getKaspaData = async () => {
-  try {
-    const response = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/kaspa?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false"
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const formatPrice = (price) => {
-  return price.toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-};
-
-const updateWidget = (data) => {
-  const { market_data } = data;
-  const price = market_data.current_price.usd;
-  const priceFormatted = formatPrice(price);
-  const priceElement = document.querySelector(".price-current p");
-  priceElement.textContent = `Price: $${priceFormatted}`;
-
-  const marketCap = (market_data.market_cap.usd / 1e6).toFixed(2) + "M$";
-  const marketCapElement = document.querySelector(".market p");
-  marketCapElement.textContent = `Market Cap: ${marketCap}`;
-
-  const volume = (market_data.total_volume.usd / 1e6).toFixed(2) + "M$";
-  const volumeElement = document.querySelector(".volume-24hr p");
-  volumeElement.textContent = `24h Volume: ${volume}`;
-
-  const change24h = market_data.price_change_percentage_24h.toFixed(2);
-  const change24hElement = document.querySelector(".price-change");
-  change24hElement.textContent = `${change24h}%`;
-
-  const high24h = market_data.high_24h.usd.toFixed(2);
-  const high24hElement = document.querySelector(".high-24hr p");
-  high24hElement.textContent = `24h High: $${high24h}`;
-
-  const low24h = market_data.low_24h.usd.toFixed(2);
-  const low24hElement = document.querySelector(".low-24hr p");
-  low24hElement.textContent = `24h Low: $${low24h}`;
-};
-
-const initWidget = async () => {
-  const data = await getKaspaData();
-  updateWidget(data);
-};
-
-initWidget();
-
 
 fetchData();
     </script>
