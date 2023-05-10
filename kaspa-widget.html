@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Kaspa Widget</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.1/dist/apexcharts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  </head>
-  <body>
+</head>
+<body>
     <div id="kaspa-widget"></div>
 
     <script>
-      const kaspaWidget = document.getElementById('kaspa-widget');
+    const kaspaWidget = document.getElementById('kaspa-widget');
+    const API_URL = 'https://api.kaspa.org';
 
-      const fetchData = async () => {
+    const fetchData = async () => {
         try {
           // Fetch current price, market cap, volume, and 24h change data
-          const response1 = await axios.get(
+        const response1 = await axios.get(
             'https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true&precision=5'
-          );
-          const data1 = response1.data.kaspa;
+        );
+        const data1 = response1.data.kaspa;
 
           // Fetch hourly market chart data for the last day
-          const response2 = await axios.get(
+        const response2 = await axios.get(
             'https://api.coingecko.com/api/v3/coins/kaspa/market_chart?vs_currency=usd&days=1&interval=hourly&date_format=iso'
-          );
-          const data2 = response2.data.prices;
+        );
+        const data2 = response2.data.prices;
 
           // Construct Hashrate and fetch data
-          const apiUrl = 'https://api.kaspa.org/info/hashrate?stringOnly=false';
-          fetch(apiUrl)
+        const apiUrl = 'https://api.kaspa.org/info/hashrate?stringOnly=false';
+        fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => {
-              const hashrate = data.hashrate;
-              let hashrateFormatted;
-              if (hashrate > 1000000000) {
+            const hashrate = data.hashrate;
+            let hashrateFormatted;
+            if (hashrate > 1000000000) {
                 hashrateFormatted = (hashrate / 1000000000).toFixed(2) + 'PH/s';
-              } else {
+            } else {
                 hashrateFormatted = hashrate.toFixed(2) + 'TH/s';
-              }
-              const hashrateElement = document.createElement('p');
-              hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
-              kaspaWidget.appendChild(hashrateElement);
-              const hashrateDiv = document.createElement('div');
-              hashrateDiv.className = 'hashrate';
-              hashrateDiv.appendChild(hashrateElement);
-              kaspaWidget.appendChild(hashrateDiv);
+            }
+            const hashrateElement = document.createElement('p');
+            hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
+            kaspaWidget.appendChild(hashrateElement);
+            const hashrateDiv = document.createElement('div');
+            hashrateDiv.className = 'hashrate';
+            hashrateDiv.appendChild(hashrateElement);
+            kaspaWidget.appendChild(hashrateDiv);
             })
             .catch((error) => console.error(error));
 
@@ -55,50 +56,45 @@
             blocktimeDiv.className = "blocktime-div";
             const blocktimeTitle = document.createElement("h4");
             blocktimeTitle.innerText = "Block Time";
-            const blocktimeElement = document.createElement("p");
-          
-                // Fetch the blocktime from the API
-      fetch(`${API_URL}/stats`)
-        .then((response) => response.json())
-        .then((data) => {
-          const blocktime = data.block_time;
-          blocktimeElement.innerText = `${blocktime.toFixed(2)}s`;
-          
+            const blocktimeElement = document.createElement("p")
+
+          // Fetch the blocktime from the API
+            fetch(`${API_URL}/stats`)
+            .then((response) => response.json())
+            .then((data) => {
+            const blocktime = data.block_time;
+            blocktimeElement.innerText = `${blocktime.toFixed(2)}s`;
+
           // Append the blocktime element to the widget
-          blocktimeDiv.appendChild(blocktimeTitle);
-          blocktimeDiv.appendChild(blocktimeElement);
-          kaspaWidget.appendChild(blocktimeDiv);
-        })
-        .catch((error) => console.error(error));
-        
-      // Construct the difficulty element
-      const difficultyDiv = document.createElement("div");
-      difficultyDiv.className = "difficulty-div";
-      const difficultyTitle = document.createElement("h4");
-      difficultyTitle.innerText = "Difficulty";
-      const difficultyElement = document.createElement("p");
+            blocktimeDiv.appendChild(blocktimeTitle);
+            blocktimeDiv.appendChild(blocktimeElement);
+            kaspaWidget.appendChild(blocktimeDiv);
+            })
+            .catch((error) => console.error(error));
 
-      // Fetch the difficulty from the API
-      fetch(`${API_URL}/blockchain`)
-        .then((response) => response.json())
-        .then((data) => {
-          const difficulty = data.chain.difficulty;
-          difficultyElement.innerText = `${difficulty.toLocaleString()}`;
-          
+          // Construct the difficulty element
+            const difficultyDiv = document.createElement("div");
+            difficultyDiv.className = "difficulty-div";
+            const difficultyTitle = document.createElement("h4");
+            difficultyTitle.innerText = "Difficulty";
+            const difficultyElement = document.createElement("p");
+
+          // Fetch the difficulty from the API
+        fetch(`${API_URL}/blockchain`)
+            .then((response) => response.json())
+            .then((data) => {
+            const difficulty = data.chain.difficulty;
+            difficultyElement.innerText = `${difficulty.toLocaleString()}`;
+
           // Append the difficulty element to the widget
-          difficultyDiv.appendChild(difficultyTitle);
-          difficultyDiv.appendChild(difficultyElement);
-          kaspaWidget.appendChild(difficultyDiv);
-        })
-        .catch((error) => console.error(error));
+            difficultyDiv.appendChild(difficultyTitle);
+            difficultyDiv.appendChild(difficultyElement);
+            kaspaWidget.appendChild(difficultyDiv);
+            })
+            .catch((error) => console.error(error));
 
-      // Append the Kaspa widget to the page
-      document.body.appendChild(kaspaWidget);
-    };
-  </script>
+          // Append the Kaspa widget to the page
+            document.body.appendChild(kaspaWidget);
+            };
+    </script>
 </body>
-
-
-    <script src="kaspa-widget.js"></script>
-  </body>
-</html>
