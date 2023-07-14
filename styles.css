@@ -1,0 +1,45 @@
+#kaspa-widget {
+  position: relative;
+  height: 560px !important;
+  background-color: #01134d !important;
+  border-radius: 15px;
+  border: 2px solid #3addbe; 
+} 
+
+p#difficulty {
+  position: absolute;
+  margin-left: 150px !important;
+  margin-bottom: 150px !important;
+}
+
+p {
+    margin: 0px;
+    margin-left: 10px;
+    color: #ffffff;
+}
+
+h2 {
+    margin-top: 40px;
+}
+
+div.apexcharts-tooltip-text {
+    color: #000000;
+}
+
+div.apexcharts-tooltip.apexcharts-theme-light {
+    color: #000000;
+}
+
+.apexcharts-menu-open {
+    color: #000000;
+}
+.volume-24hr {
+    color: #ffffff
+}        
+.apexcharts-line-series path {
+    stroke: #3addbe !important;
+}
+    
+.apexcharts-canvas {
+    margin-top: 5px !important;
+}

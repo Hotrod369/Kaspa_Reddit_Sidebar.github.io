@@ -1,61 +1,65 @@
-const kaspaWidget = document.getElementById("kaspa-widget");
+import axios from 'axios';
+import ApexCharts from 'apexcharts';
 
-const fetchData = async () => {
+
+const kaspaWidget: HTMLElement | null = document.getElementById("kaspa-widget");
+if (kaspaWidget) {
+const fetchData = async (): Promise<void> => {
   try {
     // Fetch current price, market cap, volume, and 24h change data
-    const response1 = await axios.get(
+    const response1 = await axios.get<{ kaspa: any }>(
       "https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true&precision=5"
     );
     const data1 = response1.data.kaspa;
 
     // Fetch hourly market chart data for the last day
-    const response2 = await axios.get(
+    const response2 = await axios.get<{ prices: number[][] }>(
       "https://api.coingecko.com/api/v3/coins/kaspa/market_chart?vs_currency=usd&days=1&interval=hourly&date_format=iso"
     );
     const data2 = response2.data.prices;
 
-// Construct Hashrate and fetch data
-const apiUrl = "https://api.kaspa.org/info/hashrate?stringOnly=false";
-fetch(apiUrl)
-  .then(response => response.json())
-  .then(data => {
-    const hashrate = data.hashrate;
-    let hashrateFormatted;
-    if (hashrate > 1000000000) {
-        hashrateFormatted = (hashrate / 1000000000).toFixed(2) + "PH/s";
-    } else {
-        hashrateFormatted = hashrate.toFixed(2) + "TH/s";
-    }
-    const hashrateElement = document.createElement("p");
-    hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
-    kaspaWidget.appendChild(hashrateElement);
-    const hashrateDiv = document.createElement("div");
-    hashrateDiv.className = "hashrate";
-    hashrateDiv.appendChild(hashrateElement);
-    kaspaWidget.appendChild(hashrateDiv);
-  })
-  .catch(error => console.error(error));
-    
+    // Construct Hashrate and fetch data
+    const apiUrl = "https://api.kaspa.org/info/hashrate?stringOnly=false";
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const hashrate = data.hashrate;
+        let hashrateFormatted: string;
+        if (hashrate > 1000000000) {
+            hashrateFormatted = (hashrate / 1000000000).toFixed(2) + "PH/s";
+        } else {
+            hashrateFormatted = hashrate.toFixed(2) + "TH/s";
+        }
+        const hashrateElement = document.createElement("p");
+        hashrateElement.textContent = `Hashrate: ${hashrateFormatted}`;
+        kaspaWidget.appendChild(hashrateElement);
+        const hashrateDiv = document.createElement("div");
+        hashrateDiv.className = "hashrate";
+        hashrateDiv.appendChild(hashrateElement);
+        kaspaWidget.appendChild(hashrateDiv);
+      })
+      .catch(error => console.error(error));
+
     // Construct Difficulty and fetch data
-const apiUrlDifficulty = "https://api.kaspa.org/info/network";
-fetch(apiUrlDifficulty)
-  .then(response => response.json())
-  .then(data => {
-    const difficulty = data.difficulty;
-    const difficultyFormatted = difficulty.toFixed(2);
-    const difficultyElement = document.createElement("p");
-    difficultyElement.textContent = `Difficulty: ${difficultyFormatted}`;
-    kaspaWidget.appendChild(difficultyElement);
-    const difficultyDiv = document.createElement("div");
-    difficultyDiv.className = "difficulty";
-    difficultyDiv.appendChild(difficultyElement);
-    kaspaWidget.appendChild(difficultyDiv);
-  })
-  .catch(error => console.error(error));
+    const apiUrlDifficulty = "https://api.kaspa.org/info/network";
+    fetch(apiUrlDifficulty)
+      .then(response => response.json())
+      .then(data => {
+        const difficulty = data.difficulty;
+        const difficultyFormatted = difficulty.toFixed(2);
+        const difficultyElement = document.createElement("p");
+        difficultyElement.textContent = `Difficulty: ${difficultyFormatted}`;
+        kaspaWidget.appendChild(difficultyElement);
+        const difficultyDiv = document.createElement("div");
+        difficultyDiv.className = "difficulty";
+        difficultyDiv.appendChild(difficultyElement);
+        kaspaWidget.appendChild(difficultyDiv);
+      })
+      .catch(error => console.error(error));
 
     // Extract data points for chart and create options object
-    const chartData = data2.map((item) => [item[0], item[1]]);
-    const options = {
+    const chartData: [number, number][] = data2.map((item) => [item[0], item[1]]);
+    const options: ApexCharts.ApexOptions = {
       series: [
         {
           name: "Price",
@@ -65,7 +69,7 @@ fetch(apiUrlDifficulty)
       chart: {
         type: "line",
         height: 400,
-        witdh: 350,
+        width: 350,
         zoom: {
           enabled: false,
         },
@@ -87,7 +91,7 @@ fetch(apiUrlDifficulty)
       yaxis: {
         forceNiceScale: true,
         labels: {
-          formatter: function(val) {
+          formatter: function(val: number): string {
             return `$${val.toFixed(4)}`;
           },
           style: {
@@ -98,21 +102,19 @@ fetch(apiUrlDifficulty)
       tooltip: {
         x: {
           format: "dd MMM yyyy HH:mm:ss",
-          style: {
-            colors: "#000000",
-          }  
         },
         y: {
-          formatter: function(val) {
+          formatter: (val: number): string => {
             return `$${val.toFixed(4)}`;
           },
           style: {
-            colors: "#000000",
-          }  
-        }
-      },
+            colors: ["#000000"],
+          },
+        } as ApexTooltipY, // Type assertion to ApexTooltipY
+      } as ApexTooltip, // Type assertion to ApexTooltip
+    
       fill: {
-        colors: "#3addbe",
+        colors: ["#3addbe"],
       },
     };
 
@@ -121,7 +123,7 @@ fetch(apiUrlDifficulty)
     chart.render();
 
     // Extract and format data points for current price, market cap, and volume
-    const price = data1.usd.toFixed(4); // Change to 5
+    const price = data1.usd.toFixed(4);
     const marketCap = (data1.usd_market_cap / 1000000).toFixed(2) + "M$";
     const volume = (data1.usd_24h_vol / 1000000).toFixed(2) + "M$";
     const change = data1.usd_24h_change.toFixed(2);
@@ -173,37 +175,39 @@ fetch(apiUrlDifficulty)
     kaspaWidget.appendChild(low24hElement);
     
     // Set CSS styles for widget container
-    kaspaWidget.style.backgroundColor = "#1b1b1b";
-    kaspaWidget.style.color = "#ffffff";
-    kaspaWidget.style.padding = "15px";
-    kaspaWidget.style.borderRadius = "10px";    
+    if (kaspaWidget) {
+      kaspaWidget.style.backgroundColor = "#1b1b1b";
+      kaspaWidget.style.color = "#ffffff";
+      kaspaWidget.style.padding = "15px";
+      kaspaWidget.style.borderRadius = "10px";
+    }
 
     // Set CSS styles for chart
-    ApexCharts.exec(chart.options.chart.id, "updateOptions", {
-      chart: {
-        foreColor: "#ffffff",
-      },
-      xaxis: {
-        labels: {
-          style: {
-            colors: "#ffffff",
+    chart.updateOptions({
+        chart: {
+          foreColor: "#ffffff",
+        },
+        xaxis: {
+          labels: {
+            style: {
+              colors: "#ffffff",
+            },
           },
         },
-      },
-      yaxis: {
-        labels: {
-          style: {
-            colors: "#ffffff",
+        yaxis: {
+          labels: {
+            style: {
+              colors: "#ffffff",
+            },
           },
         },
-      },
-    });
+      });
   } catch (error) {
     console.error(error);
   }
 };
 
-const getKaspaData = async () => {
+const getKaspaData = async (): Promise<any> => {
   try {
     const response = await axios.get(
       "https://api.coingecko.com/api/v3/coins/kaspa?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false"
@@ -214,47 +218,61 @@ const getKaspaData = async () => {
   }
 };
 
-const formatPrice = (price) => {
+const formatPrice = (price: number): string => {
   return price.toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
 };
 
-const updateWidget = (data) => {
+const updateWidget = (data: any): void => {
   const { market_data } = data;
   const price = market_data.current_price.usd;
   const priceFormatted = formatPrice(price);
   const priceElement = document.querySelector(".price-current p");
-  priceElement.textContent = `Price: $${priceFormatted}`;
+  if (priceElement) {
+    priceElement.textContent = `Price: $${priceFormatted}`;
+  }
 
   const marketCap = (market_data.market_cap.usd / 1e6).toFixed(2) + "M$";
   const marketCapElement = document.querySelector(".market p");
-  marketCapElement.textContent = `Market Cap: ${marketCap}`;
+  if (marketCapElement) {
+    marketCapElement.textContent = `Market Cap: ${marketCap}`;
+  }
 
   const volume = (market_data.total_volume.usd / 1e6).toFixed(2) + "M$";
   const volumeElement = document.querySelector(".volume-24hr p");
-  volumeElement.textContent = `24h Volume: ${volume}`;
+  if (volumeElement) {
+    volumeElement.textContent = `24h Volume: ${volume}`;
+  }
 
   const change24h = market_data.price_change_percentage_24h.toFixed(2);
   const change24hElement = document.querySelector(".price-change");
-  change24hElement.textContent = `${change24h}%`;
+  if (change24hElement) {
+    change24hElement.textContent = `${change24h}%`;
+  }
 
   const high24h = market_data.high_24h.usd.toFixed(2);
   const high24hElement = document.querySelector(".high-24hr p");
-  high24hElement.textContent = `24h High: $${high24h}`;
+  if (high24hElement) {
+    high24hElement.textContent = `24h High: $${high24h}`;
+  }
 
   const low24h = market_data.low_24h.usd.toFixed(2);
   const low24hElement = document.querySelector(".low-24hr p");
-  low24hElement.textContent = `24h Low: $${low24h}`;
+  if (low24hElement) {
+    low24hElement.textContent = `24h Low: $${low24h}`;
+  }
 };
 
-const initWidget = async () => {
+const initWidget = async (): Promise<void> => {
   const data = await getKaspaData();
   updateWidget(data);
 };
 
 initWidget();
 
-
 fetchData();
+}
+
+export default kaspaWidget;
