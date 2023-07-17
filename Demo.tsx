@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ApexCharts from 'apexcharts';
+import './styles.css';
+
 
 export default function App() {
   const [price, setPrice] = useState('');
