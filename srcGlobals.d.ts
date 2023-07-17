@@ -1,6 +1,0 @@
-{
-    "compilerOptions"; {
-      "plugins";
-       [{ "name": "typescript-plugin-css-modules" }]
-    }
-  }
