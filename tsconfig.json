@@ -1,10 +1,26 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "module": "ES2022",
+    "target": "ES2022",
+    "jsx": "react",
     "useUnknownInCatchVariables": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "baseUrl": "./Reddit-Kaspa-Sidebar",
+    "allowImportingTsExtensions": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
-  }
+    "sourceMap": true,
+    "outDir": "out",
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+, "app/(tabs)/ApexChart.tsx"  ]
 }
