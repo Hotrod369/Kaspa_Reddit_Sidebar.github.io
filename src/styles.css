@@ -1,0 +1,82 @@
+#root {
+  overflow: "auto";
+}
+  /* Removes Expo Router tabBar */
+#root > div > div > div > div > div > div:nth-child(2) > div:nth-child(2) {
+  display: none;
+}
+  /* Makes page scrollable */
+.r-overflow-1udh08x {
+  overflow: auto;
+}
+
+h2 {
+  margin-top: -485px;
+  margin-bottom: -90px;
+  margin-left: 25px;
+  width: 400px;
+  font-size: 32px;
+}
+
+.chart-container {
+  flex: 1;
+  margin-top: 100px;
+  margin-right: 20px; /* Add spacing between chart and text */
+}
+
+#kaspaChart .apexcharts-canvas {
+  position: relative;
+  height: 500;
+}
+
+#kaspaChart {
+    position: relative;
+    margin-top: 100px;
+    margin-left: 10px;
+    height: 425px;
+    width: 355px;
+    background-color: #01134d;
+    border-radius: 15px;
+    border: 2px solid #3addbe;
+  }
+  
+  #kaspaChart p#difficulty {
+    position: absolute;
+    margin-left: 150px;
+    margin-bottom: 150px;
+  }
+  
+  p {
+    width: 400px;
+    margin: 0;
+    margin-left: 10px;
+    color: #000000;
+    line-height: 1.2; /* Adjust the line height as needed */
+  }
+  
+  #kaspaChart .apexcharts-tooltip-text {
+    color: #000000;
+  }
+  
+  #kaspaChart .apexcharts-tooltip.apexcharts-theme-light {
+    color: #000000;
+  }
+  
+  #kaspaChart .apexcharts-menu-open {
+    color: #000000;
+  }
+  
+  #kaspaChart .volume-24hr {
+    color: #000000;
+  }
+  
+  #kaspaChart .apexcharts-line-series path {
+    stroke: #3addbe;
+  }
+  
+  #kaspaChart .apexcharts-canvas ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 6px;
+    margin-top: 5px;
+  }
+  
