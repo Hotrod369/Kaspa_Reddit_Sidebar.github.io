@@ -9,5 +9,11 @@ const config = getDefaultConfig(__dirname, {
   isCSSEnabled: true,
 });
 
+config.transformer.getTransformOptions = async () => ({
+  transform: {
+    experimentalImportSupport: true,
+  },
+});
+
 // eslint-disable-next-line no-undef
 module.exports = config;
