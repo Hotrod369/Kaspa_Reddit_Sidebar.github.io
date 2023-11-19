@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState, } from "react";
-import ApexChart from "./kaspaChart";
-import './styles';
 import './App.css';
 import IconRow from './IconRow';
 import MyComponent from './kaspa-logo';
+import ApexChart from "./kaspaChart";
+import './styles';
 
 
 
@@ -28,18 +28,23 @@ export default function Demo() {
         );
         const data = responseData.data;
 
+        // Fetch Market Cap
+        const market_Response = await axios.get(
+          'https://api.kaspa.org/info/marketcap?stringOnly=false'
+        );
+        const cap = market_Response.data; 
+
+        setMarketCap((cap.marketcap / 1 / 1e9).toFixed(2));
         setPrice(data.market_data.current_price.usd.toFixed(4));
         setChange(data.market_data.price_change_percentage_24h.toFixed(2));
-        setMarketCap((data.market_data.market_cap.usd / 1000000).toFixed(2));
         setVolume((data.market_data.total_volume.usd / 1000000).toFixed(2));
 
-        
         const hashrateResponse = await fetch('https://api.kaspa.org/info/hashrate?stringOnly=false');
         const hashrateData = await hashrateResponse.json();
         const hashrateValue = hashrateData.hashrate;
         let hashrateFormatted;
-        if (hashrateValue > 1000000000) {
-          hashrateFormatted = (hashrateValue / 1000000000).toFixed(2) + 'PH/s';
+        if (hashrateValue > 1) {
+          hashrateFormatted = (hashrateValue / 1000).toFixed(2) + 'PH/s';
         } else {
           hashrateFormatted = hashrateValue.toFixed(2) + 'TH/s';
         }
@@ -49,7 +54,6 @@ export default function Demo() {
         const difficultyData = await difficultyResponse.json();
         const difficultyValue = difficultyData.difficulty;
         setDifficulty(difficultyValue.toFixed(2));
-
 
         const highLowResponse = await axios.get(
           'https://api.coingecko.com/api/v3/coins/kaspa?tickers=false&community_data=false&developer_data=false&sparkline=false'
@@ -117,7 +121,7 @@ export default function Demo() {
             <p>Change: {change}</p>
           </div>
           <div>
-            <p>Market Cap: {marketCap}M$</p>
+            <p>Market Cap: {marketCap}B$</p>
             <p>24h Volume: {volume}M$</p>
           </div>
           <div>

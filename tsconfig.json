@@ -4,23 +4,25 @@
     "module": "ES2022",
     "target": "ES2022",
     "jsx": "react",
-    "useUnknownInCatchVariables": true,
+    "baseUrl": "src",
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "allowImportingTsExtensions": true,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "allowImportingTsExtensions": false,
+    "noEmit": false,
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
     "sourceMap": true,
-    "outDir": "out",
-    "strict": true,
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+    "outDir": "dist",
+    "strict": true
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "metro.config.js",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/(tabs)/ApexChart.tsx"  ]
+,   "src/kaspaChart.jsx"  ]
 }

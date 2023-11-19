@@ -78,7 +78,7 @@ function ApexChart({ data }: Props) {
       },
     } as ApexCharts.ApexOptions; // Explicitly cast options to ApexOptions
 
-    
+
     return (
       <>
         <h2>Kaspa Price Chart</h2>
