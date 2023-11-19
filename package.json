@@ -2,6 +2,7 @@
   "name": "kaspa-page",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "homepage": "https://github.com/Hotrod369/Hotrod369.github.io"
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
